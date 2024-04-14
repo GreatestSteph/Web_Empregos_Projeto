@@ -1,69 +1,79 @@
 import React, { useState } from 'react';
 
-import Cabecalho from "./cabecalho_componente/cabecalho.jsx";
-import MenuWalleMart from "./menu_componente/menu_wallemart.jsx";
+import Cabecalho from "./pagina_componentes/cabecalho.jsx"; //ok
+import MenuEmpresa from "./pagina_componentes/gerenciamento/menuempresa.jsx"; //ok
 
-import ContextoUsuario from "./contexto/contexto.jsx";
-import WallemartLogin from "./menu_componente/login_wallemart.jsx";
+import ContextoEmpresa from "./pagina_componentes/gerenciamento/contextologin.jsx"; //ok
+import EmpresaLogin from "./pagina_componentes/gerenciamento/loginempresa.jsx"; //ok
 
-import ExibirCadastroFuncionarios from "./tabelas/funcionariosCadastrados.jsx";
-import ExibirCadastroItens from "./tabelas/itensCadastrados.jsx";
+import ExibirCadastroCandidatos from "./tabelas_gerenciamento/candidatoscadastrados.jsx"; //ok
+import ExibirCadastroVagas from "./tabelas_gerenciamento/vagascadastradas.jsx"; //ok
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
-  const [Usuario, setUsuario] = useState({
-    nome:'',
-    logado: false
+function App() { //ok
+  const [nomeEmpresa, setNomeEmpresa] = useState({ //ok
+    nome:'', //ok
+    logado: false //ok
   });
 
-  if (!Usuario.logado) {
+  
+  if (!nomeEmpresa.logado) { //ok
     return (
-      <ContextoUsuario.Provider value={[Usuario, setUsuario] }>
-        <Cabecalho/>
-        <WallemartLogin/>
-      </ContextoUsuario.Provider>  
+      <div style={{ backgroundColor: 'lightblue', height: '100vh' }}>
+        <ContextoEmpresa.Provider value={[nomeEmpresa, setNomeEmpresa] }> {/* ok */}
+          <Cabecalho/> {/* ok */}
+          <EmpresaLogin/>
+        </ContextoEmpresa.Provider>
+      </div>
     );
   }
 
   return (
-    <div className="App">
-      <ContextoUsuario.Provider value={[Usuario, setUsuario] }>
-        <BrowserRouter>
-          <Routes>
-            <Route path="cadastrofuncionario" element={  
+    <div className="App" style={{ backgroundColor: 'lightblue', minHeight: '100vh' }}> {/* ok */}
+      <ContextoEmpresa.Provider value={[nomeEmpresa, setNomeEmpresa] }> {/* ok */}
+
+
+        <BrowserRouter> {/* ok */}
+          <Routes> {/* ok */}
+            <Route path="verificacandidatos" element={ //ok
               <div>
                 <br/>
-                <Cabecalho/>
+                <Cabecalho/> {/* ok */}
                 <br/>
                 <br/>
                 <br/>
-                <ExibirCadastroFuncionarios/> 
+                <ExibirCadastroCandidatos/>  {/* ok */}
               </div>
             }/>
 
-            <Route path="/" element={ 
+
+            <Route path="/" element={ //ok
               <div>
                 <br/>
-                <Cabecalho/>
+                <Cabecalho/> {/* ok */}
                 <br/>
-                <MenuWalleMart/>
+                <MenuEmpresa/>{/* ok */}
               </div>
             }/>
 
-            <Route path="cadastroitens" element={  
+
+            <Route path="cadastrovagas" element={  //ok
               <div>
                 <br/>
-                <Cabecalho/>
+                <Cabecalho/> {/* ok */}
                 <br/>
                 <br/>
                 <br/>
-                <ExibirCadastroItens/> 
+                <ExibirCadastroVagas/> {/* ok */}
               </div>
             }/>
           </Routes>
-        </BrowserRouter>
-      </ContextoUsuario.Provider>
+
+
+        </BrowserRouter> {/* ok */}
+      </ContextoEmpresa.Provider> {/* ok */}
+      <br/>
     </div>
   );
 }
