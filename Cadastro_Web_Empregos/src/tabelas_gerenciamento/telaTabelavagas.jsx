@@ -1,11 +1,28 @@
 import { Button, Table } from "react-bootstrap";
+import urlBaseVaga from "../config/configvaga"
 
 export default function TabelaVagas(props) {
 
     //exclui
-    function excluirVagas(Cargo_vaga){
-        const novaListaVagas = props.listaVagas.filter(vaga => vaga.Cargo_vaga !== Cargo_vaga)
-        props.setListaVagas(novaListaVagas);
+    function excluirVagas(ID_vaga){
+        fetch(urlBaseVaga, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({ ID_vaga: ID_vaga}),
+        })
+        .then(resposta_vaga => resposta_vaga.json())
+        .then((vaga) => {
+            if (vaga.status){
+                const novaListaVagas = props.listaVagas.filter(vaga => vaga.ID_vaga !== ID_vaga)
+                props.setListaVagas(novaListaVagas);
+            }
+            else {
+                alert(vaga.mensagem);
+            }
+        })
+        .catch((erro) => {
+            alert('Não foi possível conectar ao backend. Erro' + erro.mensagem);
+        })
     };
 
     //edita
@@ -27,11 +44,11 @@ export default function TabelaVagas(props) {
             flexDirection: 'column',
         },
         botao: {
-            width: '100px',
+            width: '215px',
             margin: '10px',
             padding: '10px',
             fontSize: '16px',
-            backgroundColor: '#3cb371',
+            backgroundColor: '#6495ed',
             color: 'white',
             borderRadius: '10%',
             cursor: 'pointer',
@@ -92,8 +109,10 @@ export default function TabelaVagas(props) {
                                     }}
                                     >Alterar</Button>
 
-                                    <Button variant="danger"onClick={() => {
-                                        excluirVagas(vaga.Cargo_vaga);
+                                    <Button variant="danger" onClick={() => {
+                                        if(window.confirm("Deseja excluir a vaga?")){
+                                            excluirVagas(vaga.ID_vaga);
+                                        }
                                     }}
                                     >Excluir</Button>
 

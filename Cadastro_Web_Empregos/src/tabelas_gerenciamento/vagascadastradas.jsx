@@ -18,10 +18,18 @@ export default function ExibirCadastroVagas(props) {
     },[]);
 
 
+    const estiloFormulario = {
+        tela: {
+            width: '100%',            
+            padding: '10px',          
+            color: 'white',
+        },
+    };  
+    
     //frontend candidatos
     if (exibirTabelaVagas) {
         return (
-            <div>
+            <div style={estiloFormulario.tela}>
                 <h1>Vagas Cadastradas</h1>
                 <br/>
                 <TabelaVagas
@@ -36,7 +44,7 @@ export default function ExibirCadastroVagas(props) {
     }
     else {
         return (
-            <div>
+            <div style={estiloFormulario.tela}>
                 <h1>Vagas Cadastradas</h1>
                 <br/>
                 <FormularioVaga 

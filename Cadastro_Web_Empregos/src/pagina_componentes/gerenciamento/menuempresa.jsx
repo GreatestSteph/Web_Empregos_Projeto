@@ -10,6 +10,7 @@ export default function MenuEmpresa(props) {
         justifyContent: 'center',
         alignItems: 'center',
         height: '65vh',
+        color: 'white',
     },
     botoesContainer: {
         display: 'flex',
@@ -21,7 +22,7 @@ export default function MenuEmpresa(props) {
         margin: '10px',
         padding: '10px',
         fontSize: '16px',
-        backgroundColor: '#000000',
+        backgroundColor: '#6495ed',
         color: 'white',
         borderRadius: '10%',
         cursor: 'pointer',
@@ -35,8 +36,12 @@ export default function MenuEmpresa(props) {
   return (
     <div style={estiloMenu.conteudo}>
       <div style={estiloMenu.botoesContainer}>
+      <br/>
+      <br/>
+      <br/>
       <h1>Bem vindo(a) ao Gerenciamento RH!</h1>
-      <h5>{props?.texto}</h5><span>Sua empresa é: {Empresa.nome}</span>
+      <br/>
+      <h5>{props?.texto}<span>Sua empresa é: {Empresa.nome}</span></h5>
         <br/>
         <br/>
         <Link to="/cadastrovagas" style={estiloMenu.botao}>

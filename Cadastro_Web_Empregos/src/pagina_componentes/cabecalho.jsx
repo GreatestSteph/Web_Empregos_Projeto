@@ -4,7 +4,7 @@ export default function Cabecalho(){
         top: 0,
         left: 0,
         width: '100%',            
-        backgroundColor: '#000000',
+        backgroundColor: '#4169e1',
         padding: '10px',          
         display: 'flex',          
         justifyContent: 'space-between',

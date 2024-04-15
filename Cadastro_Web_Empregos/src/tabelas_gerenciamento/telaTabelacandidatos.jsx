@@ -1,17 +1,28 @@
 import { Button, Table } from "react-bootstrap";
+import urlBaseCandidato from "../config/configcandidato"
 
 export default function TabelaCandidatos(props) {
-    //exclui
-    function excluirCandidatos(Nome_cand){
-        const novaListaCandidatos = props.listaCandidatos.filter(candidato => candidato.Nome_cand !== Nome_cand)
-        props.setListaCandidatos(novaListaCandidatos);
-    };
 
-    //altera
-    function alterarCandidatos(candidato){
-        props.setCandidatoSelecionado(candidato);
-        props.setModoEdicaoCandidato(true);
-        props.setExibirTabelaCandidatos(false);
+    //exclui
+    function excluirCandidatos(ID_cand){
+        fetch(urlBaseCandidato,{
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({ ID_cand: ID_cand}),
+        })
+        .then(resposta_candidato => resposta_candidato.json())
+        .then((candidato) => {
+            if (candidato.status){
+                const novaListaCandidatos = props.listaCandidatos.filter(candidato => candidato.ID_cand !== ID_cand)
+                props.setListaCandidatos(novaListaCandidatos);
+            }
+            else {
+                alert(candidato.mensagem);
+            }
+        })
+        .catch((erro) => {
+            alert('Não foi possível conectar ao backend. Erro' + erro.mensagem);
+        })
     };
 
     //estilo
@@ -26,11 +37,11 @@ export default function TabelaCandidatos(props) {
             flexDirection: 'column',
         },
         botao: {
-            width: '100px',
+            width: '280px',
             margin: '10px',
             padding: '10px',
             fontSize: '16px',
-            backgroundColor: '#3cb371',
+            backgroundColor: '#6495ed',
             color: 'white',
             borderRadius: '10%',
             cursor: 'pointer',
@@ -93,16 +104,13 @@ export default function TabelaCandidatos(props) {
                                     <td>{candidato.Soft_Skills_cand}</td>
                                     <td>{candidato.Salario_cand}</td>
                                     <td>
-                                        
-                                    <Button variant="primary" onClick={() => {
-                                        alterarCandidatos(candidato);
-                                    }}
-                                    >Alterar</Button>
 
                                     <Button variant="danger"onClick={() => {
-                                        excluirCandidatos(candidato.Nome_cand);
+                                        if(window.confirm("Deseja excluir o candidato?")){
+                                            excluirCandidatos(candidato.ID_cand);
+                                        }
                                     }}
-                                    >Excluir</Button>
+                                    >Marcar Desistência</Button>
 
                                     </td>
                                 </tr>
@@ -115,7 +123,6 @@ export default function TabelaCandidatos(props) {
             <br/>
             <Button style={estiloFormulario.botao} onClick={() => {
                 props.setExibirTabelaCandidatos(false);
-                props.setModoEdicaoCandidato(false);
             }}>
                 Cadastrar Novo Candidato
             </Button>

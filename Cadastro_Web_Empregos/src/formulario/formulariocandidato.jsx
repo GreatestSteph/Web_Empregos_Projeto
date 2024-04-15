@@ -4,10 +4,11 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useState } from 'react';
 import urlBaseCandidato from '../config/configcandidato';
+import { FormText } from 'react-bootstrap';
 
 export default function FormularioCandidato(props) {
 
-    //altera vaga backend
+    //altera vaga backend - nao vai ser usado
     async function alterarCandidatoBackend() {
         const candidatoParaEnvio = {
             ID_vaga: candidato.ID_vaga || "",
@@ -115,7 +116,7 @@ export default function FormularioCandidato(props) {
         tela: {
             width: '100%',            
             padding: '10px',          
-            color: 'black',
+            color: 'white',
         },
         botoesContainer: {
             display: 'flex',
@@ -126,7 +127,7 @@ export default function FormularioCandidato(props) {
             margin: '10px',
             padding: '10px',
             fontSize: '16px',
-            backgroundColor: '#3cb371',
+            backgroundColor: '#6495ed',
             color: 'white',
             borderRadius: '10%',
             cursor: 'pointer',
@@ -186,19 +187,21 @@ export default function FormularioCandidato(props) {
                     <Form.Control type="text" placeholder="Número ID a ser gerado" value={candidato.ID_cand} id="ID_cand" name="ID_cand" onChange={manipularMudança} readOnly />
                 </Form.Group>
 
-
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo2">
                     <Form.Label>Nome completo</Form.Label>
                     <Form.Control type="text" placeholder="Nome Completo" required value={candidato.Nome_cand} id="Nome_cand" name="Nome_cand" onChange={manipularMudança}/>
                     <Form.Control.Feedback type='invalid'>Insira o nome completo e corretamente!</Form.Control.Feedback>
                 </Form.Group>
 
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo3">
                     <Form.Label>Data de Nascimento</Form.Label>
                     <Form.Control type="date" placeholder="Data de Nascimento" required value={candidato.Data_nas_cand} onChange={manipularMudança} id="Data_nas_cand" name="Data_nas_cand"/>
                     <Form.Control.Feedback type='invalid'>Insira sua data de nascimento correta!</Form.Control.Feedback>
                 </Form.Group>
 
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo4">
                     <Form.Label>Gênero</Form.Label>
                     <Form.Control as="select" required value={candidato.Genero_cand} onChange={manipularMudança} id="Genero_cand" name="Genero_cand">
@@ -209,31 +212,36 @@ export default function FormularioCandidato(props) {
                     </Form.Control>
                     <Form.Control.Feedback type='invalid'>Selecione seu gênero!</Form.Control.Feedback>
                 </Form.Group>
-                
+
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo5">
                     <Form.Label>CEP</Form.Label>
                     <Form.Control type="text" placeholder="CEP" required value={candidato.CEP_cand} onChange={manipularMudança} id="CEP_cand" name="CEP_cand"/>
                     <Form.Control.Feedback type='invalid'>Insira o CEP corretamente!</Form.Control.Feedback>
                 </Form.Group>
 
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo6">
                     <Form.Label>Telefone</Form.Label>
                     <Form.Control type="tel" placeholder="Telefone" required value={candidato.Telefone_cand} onChange={manipularMudança} id="Telefone_cand" name="Telefone_cand"/>
                     <Form.Control.Feedback type='invalid'>Insira o telefone corretamente!</Form.Control.Feedback>
                 </Form.Group>
 
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo7">
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="email" placeholder="Email" required value={candidato.Email_cand} onChange={manipularMudança} id="Email_cand" name="Email_cand"/>
                     <Form.Control.Feedback type='invalid'>Insira o email corretamente!</Form.Control.Feedback>
                 </Form.Group>
 
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo8">
                     <Form.Label>Cargo desejado</Form.Label>
                     <Form.Control type="text" placeholder="Cargo" required value={candidato.Cargo_cand} onChange={manipularMudança} id="Cargo_cand" name="Cargo_cand"/>
                     <Form.Control.Feedback type='invalid'>Insira o cargo corretamente!</Form.Control.Feedback>
                 </Form.Group>
 
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo9">
                     <Form.Label>Escolaridade</Form.Label>
                     <Form.Control as="select" required value={candidato.Escolaridade_cand} onChange={manipularMudança} id="Escolaridade_cand" name="Escolaridade_cand">
@@ -247,6 +255,7 @@ export default function FormularioCandidato(props) {
                     <Form.Control.Feedback type='invalid'>Selecione sua escolaridade!</Form.Control.Feedback>
                 </Form.Group>
 
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo10">
                     <Form.Label>Cursos realizados</Form.Label>
                     <Form.Control as="select" required value={candidato.Curso_cand} onChange={manipularMudança} id="Curso_cand" name="Curso_cand">
@@ -295,6 +304,7 @@ export default function FormularioCandidato(props) {
                     <Form.Control.Feedback type='invalid'>Selecione uma opção!</Form.Control.Feedback>
                 </Form.Group>
 
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo11">
                     <Form.Label>Experiência profissional relacionada ao cargo</Form.Label>
                     <Form.Control as="select" required value={candidato.Experiencia_cand} onChange={manipularMudança} id="Experiencia_cand" name="Experiencia_cand">
@@ -316,37 +326,42 @@ export default function FormularioCandidato(props) {
                     <Form.Control.Feedback type='invalid'>Selecione sua experiência!</Form.Control.Feedback>
                 </Form.Group>
 
-
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo12">
                     <Form.Label>Descreva suas Hard Skills</Form.Label>
-                    <Form.Control type="text" placeholder="Hard_Skills_cand" required value={candidato.Hard_Skills_cand} onChange={manipularMudança} id="Hard_Skills_cand" name="Hard_Skills_cand"/>
+                    <Form.Control type="text" placeholder="Hard Skills" required value={candidato.Hard_Skills_cand} onChange={manipularMudança} id="Hard_Skills_cand" name="Hard_Skills_cand"/>
                     <Form.Control.Feedback type='invalid'>Descreva suas hard skills!</Form.Control.Feedback>
                 </Form.Group>
-                
-                
-                <Form.Group as={Col} md="3" controlId="campo13">
-                    <Form.Label>Selecione suas Soft Skills</Form.Label>
 
-                        {['Comunicação', 'Trabalho em equipe', 'Proatividade', 'Pensamento Analítico', 'Resolução de problemas', 'Adaptabilidade', 'Liderança', 'Pensamento crítico', 'Empatia', 'Gestão de tempo', 'Resiliência', 'Autoconfiança', 'Criatividade'].map((Soft_Skills_cand, index) => (
-                        
-                        <Form.Check key={index} type="checkbox" label={Soft_Skills_cand} id="Soft_Skills_cand" name="Soft_Skills_cand" value={Soft_Skills_cand} checked={candidato.Soft_Skills_cand.includes(Soft_Skills_cand)} onChange={manipularMudança} />))}
-                    
-                    <Form.Control.Feedback type='invalid'>Selecione suas soft skills!</Form.Control.Feedback>
-                </Form.Group>
-
-
+                <br/>
                 <Form.Group as={Col} md="3" controlId="campo14">
                     <Form.Label>Pretensão Salarial</Form.Label>
                     <Form.Control type="text" placeholder="Salário" required value={candidato.Salario_cand} onChange={manipularMudança} id="Salario_cand" name="Salario_cand"/>
                     <Form.Control.Feedback type='invalid'>Insira o salário corretamente!</Form.Control.Feedback>
                 </Form.Group>
     
+                <br/>
+                <Form.Group as={Col} md="3" controlId="campo13">
+                <Form.Label>Selecione sua melhor Soft Skill</Form.Label>
+                    <div style={{ display: 'flex', flexWrap: 'row', width: '1000px', justifyContent: 'space-between' }}>
+                        {['Comunicação', 'Trabalho em equipe', 'Proatividade', 'Pensamento Analítico', 'Resolução de problemas', 'Adaptabilidade'].map((Soft_Skills_cand, index) => (
+                        <Form.Check key={index} type="checkbox" label={Soft_Skills_cand} id={`Soft_Skills_cand`} name={`Soft_Skills_cand`} value={Soft_Skills_cand} checked={candidato[`Soft_Skills_cand`].includes(Soft_Skills_cand)} onChange={manipularMudança}/>
+                        ))}
+                    </div>
+                    <div style={{ display: 'flex', flexWrap: 'row', width: '1000px', justifyContent: 'space-between' }}>
+                        {['Liderança', 'Pensamento crítico', 'Empatia', 'Gestão de tempo', 'Resiliência', 'Autoconfiança', 'Criatividade'].map((Soft_Skills_cand, index) => (
+                        <Form.Check
+                            key={index} type="checkbox" label={Soft_Skills_cand} id={`Soft_Skills_cand`} name={`Soft_Skills_cand`} value={Soft_Skills_cand} checked={candidato[`Soft_Skills_cand`].includes(Soft_Skills_cand)} onChange={manipularMudança}/>
+                        ))}
+                    </div>
+                <Form.Control.Feedback type='invalid'>Selecione sua melhor soft skill!</Form.Control.Feedback>
+                </Form.Group>
+
             </Row>
             <br/>
-            <Button type="submit" style={estiloFormulario.botao}> {props.modoEdicaoCandidato ? "Salvar" : "Enviar"}</Button>
+            <Button type="submit" style={estiloFormulario.botao}> Enviar </Button>
 
             <Button style={estiloFormulario.botaovoltar} onClick={() => {
-                props.setModoEdicaoCandidato(false);
                 props.setExibirTabelaCandidatos(true);
             }}>Voltar</Button>
 

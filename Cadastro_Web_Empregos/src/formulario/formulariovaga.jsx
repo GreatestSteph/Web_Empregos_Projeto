@@ -116,7 +116,7 @@ export default function FormularioVaga(props) {
         tela: {
             width: '100%',            
             padding: '10px',          
-            color: 'black',
+            color: 'white',
         },
         botoesContainer: {
             display: 'flex',
@@ -127,7 +127,7 @@ export default function FormularioVaga(props) {
             margin: '10px',
             padding: '10px',
             fontSize: '16px',
-            backgroundColor: '#3cb371',
+            backgroundColor: '#6495ed',
             color: 'white',
             borderRadius: '10%',
             cursor: 'pointer',

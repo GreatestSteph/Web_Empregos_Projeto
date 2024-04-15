@@ -8,7 +8,6 @@ export default function ExibirCadastroCandidatos(props) {
     const [exibirTabelaCandidatos, setExibirTabelaCandidatos] = useState(true);
     const [listaCandidatos, setListaCandidatos] = useState([]);
     const [candidatoSelecionado, setCandidatoSelecionado] = useState({});
-    const [modoEdicaoCandidato, setModoEdicaoCandidato] = useState(false);
 
     //ok
     useEffect(()=>{
@@ -17,11 +16,18 @@ export default function ExibirCadastroCandidatos(props) {
         .then(candidato => setListaCandidatos(candidato));
     },[]);
 
+    const estiloFormulario = {
+        tela: {
+            width: '100%',            
+            padding: '10px',          
+            color: 'white',
+        },
+    };    
 
     //frontend candidatos
     if (exibirTabelaCandidatos) {
         return (
-            <div>
+            <div style={estiloFormulario.tela}>
                 <h1>Candidatos Cadastrados</h1>
                 <br/>
                 <TabelaCandidatos
@@ -29,7 +35,6 @@ export default function ExibirCadastroCandidatos(props) {
                     setListaCandidatos={setListaCandidatos}
                     setExibirTabelaCandidatos={setExibirTabelaCandidatos}
                     setCandidatoSelecionado={setCandidatoSelecionado}
-                    setModoEdicaoCandidato={setModoEdicaoCandidato}
                 />
             </div>
         )
@@ -37,15 +42,11 @@ export default function ExibirCadastroCandidatos(props) {
     else {
         return (
             <div>
-                <h1>Candidatos Cadastrados</h1>
-                <br/>
                 <FormularioCandidato 
                     setExibirTabelaCandidatos={setExibirTabelaCandidatos}
                     listaCandidatos={listaCandidatos}
                     setListaCandidatos={setListaCandidatos}
                     candidatoSelecionado={candidatoSelecionado}
-                    setModoEdicaoCandidato={setModoEdicaoCandidato}
-                    modoEdicaoCandidato={modoEdicaoCandidato}
                 />
             </div>
         )

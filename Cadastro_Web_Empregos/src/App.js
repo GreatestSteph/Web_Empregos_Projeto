@@ -9,6 +9,8 @@ import EmpresaLogin from "./pagina_componentes/gerenciamento/loginempresa.jsx"; 
 import ExibirCadastroCandidatos from "./tabelas_gerenciamento/candidatoscadastrados.jsx"; //ok
 import ExibirCadastroVagas from "./tabelas_gerenciamento/vagascadastradas.jsx"; //ok
 
+import MenuPortal from "./pagina_componentes/menu_portal.jsx"
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() { //ok
@@ -17,63 +19,83 @@ function App() { //ok
     logado: false //ok
   });
 
-  
-  if (!nomeEmpresa.logado) { //ok
-    return (
-      <div style={{ backgroundColor: 'lightblue', height: '100vh' }}>
-        <ContextoEmpresa.Provider value={[nomeEmpresa, setNomeEmpresa] }> {/* ok */}
-          <Cabecalho/> {/* ok */}
-          <EmpresaLogin/>
-        </ContextoEmpresa.Provider>
-      </div>
-    );
-  }
-
   return (
-    <div className="App" style={{ backgroundColor: 'lightblue', minHeight: '100vh' }}> {/* ok */}
-      <ContextoEmpresa.Provider value={[nomeEmpresa, setNomeEmpresa] }> {/* ok */}
+    <div className="App" style={{ backgroundColor: '#000080', minHeight: '100vh' }}>
+      <ContextoEmpresa.Provider value={[nomeEmpresa, setNomeEmpresa]}>
+        <BrowserRouter>
+
+          <Routes>
+
+            <Route path="verificacandidatos" element={
+              !nomeEmpresa.logado ? (
+                <div style={{ backgroundColor: '#000080', height: '100vh' }}>
+                  <br/>
+                  <Cabecalho />
+                  <EmpresaLogin />
+                </div>
+              ) : (
+                <><br/>
+                  <Cabecalho />
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <ExibirCadastroCandidatos />
+                </>
+              )
+            } />
 
 
-        <BrowserRouter> {/* ok */}
-          <Routes> {/* ok */}
-            <Route path="verificacandidatos" element={ //ok
-              <div>
-                <br/>
-                <Cabecalho/> {/* ok */}
-                <br/>
-                <br/>
-                <br/>
-                <ExibirCadastroCandidatos/>  {/* ok */}
-              </div>
-            }/>
+            <Route path="menuempresa" element={
+              !nomeEmpresa.logado ? (
+                <div style={{ backgroundColor: '#000080', height: '100vh' }}>
+                  <br/>
+                  <Cabecalho />
+                  <EmpresaLogin />
+                </div>
+              ) : (
+                <><br/>
+                  <Cabecalho />
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <MenuEmpresa />
+                </>
+              )
+            } />
 
+            <Route path="/" element={
+              <><br/>
+                <Cabecalho />
+                <br/>
+                <MenuPortal />
+              </>
+            } />
 
-            <Route path="/" element={ //ok
-              <div>
-                <br/>
-                <Cabecalho/> {/* ok */}
-                <br/>
-                <MenuEmpresa/>{/* ok */}
-              </div>
-            }/>
+            <Route path="cadastrovagas" element={
+              !nomeEmpresa.logado ? (
+                <div style={{ backgroundColor: '#000080', height: '100vh' }}>
+                  <br/>
+                  <Cabecalho />
+                  <EmpresaLogin />
+                </div>
+              ) : (
+                <><br/>
+                  <Cabecalho />
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <ExibirCadastroVagas />
+                </>
+              )
+            } />
 
-
-            <Route path="cadastrovagas" element={  //ok
-              <div>
-                <br/>
-                <Cabecalho/> {/* ok */}
-                <br/>
-                <br/>
-                <br/>
-                <ExibirCadastroVagas/> {/* ok */}
-              </div>
-            }/>
           </Routes>
 
-
-        </BrowserRouter> {/* ok */}
-      </ContextoEmpresa.Provider> {/* ok */}
-      <br/>
+        </BrowserRouter>
+      </ContextoEmpresa.Provider>
     </div>
   );
 }

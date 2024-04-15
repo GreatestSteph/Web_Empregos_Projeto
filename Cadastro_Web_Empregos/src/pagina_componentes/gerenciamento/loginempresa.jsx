@@ -11,6 +11,7 @@ export default function EmpresaLogin(props) {
             justifyContent: 'center',
             alignItems: 'center',
             height: '65vh',
+            color: 'white',
         },
         botoesContainer: {
             display: 'flex',
@@ -22,7 +23,7 @@ export default function EmpresaLogin(props) {
             margin: '10px',
             padding: '10px',
             fontSize: '16px',
-            backgroundColor: '#000000',
+            backgroundColor: '#6495ed',
             color: 'white',
             borderRadius: '10%',
             cursor: 'pointer',
@@ -48,13 +49,21 @@ export default function EmpresaLogin(props) {
                 logado: true
             })
         }
+        else if (nomeEmpresa === 'Amezon' && senha === 'Amezon'){
+            setEmpresa({
+                nome: nomeEmpresa,
+                logado: true
+            })
+        }
     }
 
     //frontend do login
     return (
         <div style={estiloMenu.conteudo}>
             <div style={estiloMenu.botoesContainer}>
-
+                <br/><br/><br/><br/><br/><br/><br/>
+                <h1>Bem-vindo(a)!</h1>
+                <br/><br/>
                 <Form>
                     <Form.Group>
                         <FormLabel>Nome da Empresa:</FormLabel>
